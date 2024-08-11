@@ -1,0 +1,133 @@
+{
+	"name": "EmailNotifications",
+	"author": "thomas-topway-it",
+	"version": "1.0",
+	"url": "https://www.mediawiki.org/wiki/Extension:EmailNotifications",
+	"descriptionmsg": "emailnotifications-extension-desc",
+	"license-name": "GPL-2.0-or-later",
+	"requires": {
+		"MediaWiki": ">= 1.35.0"
+	},
+	"MessagesDirs": {
+		"EmailNotifications": [
+			"i18n"
+		]
+	},
+	"callback": "EmailNotificationsHooks::initExtension",
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\EmailNotifications\\": "includes/classes",
+		"MediaWiki\\Extension\\EmailNotifications\\Pagers\\": "includes/specials/pagers/"
+	},
+	"AutoloadClasses": {
+		"EmailNotificationsHooks": "includes/EmailNotificationsHooks.php",
+		"EmailNotifications": "includes/EmailNotifications.php",
+		"SpecialEmailNotifications": "includes/specials/SpecialEmailNotifications.php",
+		"SpecialEmailNotificationsActivity": "includes/specials/SpecialEmailNotificationsActivity.php",
+		"SpecialEmailNotificationsEvents": "includes/specials/SpecialEmailNotificationsEvents.php",
+		"EmailNotificationsApiCheckLatestVersion": "includes/api/EmailNotificationsApiCheckLatestVersion.php"
+	},
+	"GroupPermissions": {
+		"sysop": {
+			"emailnotifications-can-manage-notifications": true
+		},
+		"bureaucrat": {
+			"emailnotifications-can-manage-notifications": true
+		},
+		"emailnotifications-admin": {
+			"emailnotifications-can-manage-notifications": true
+		}
+	},
+	"AddGroups": {
+		"sysop": [
+			"emailnotifications-admin"
+		],
+		"bureaucrat": [
+			"emailnotifications-admin"
+		],
+		"emailnotifications-admin": [
+			"emailnotifications-admin"
+		]
+	},
+	"RemoveGroups": {
+		"sysop": [
+			"emailnotifications-admin"
+		],
+		"bureaucrat": [
+			"emailnotifications-admin"
+		],
+		"emailnotifications-admin": [
+			"emailnotifications-admin"
+		]
+	},
+	"AvailableRights": [
+		"emailnotifications-can-manage-notifications"
+	],
+	"ExtensionMessagesFiles": {
+		"EmailNotificationsAlias": "EmailNotifications.alias.php",
+		"EmailNotificationsMagic": "EmailNotificationsMagic.i18n.magic.php"
+	},
+	"Hooks": {
+		"AlternateUserMailer": "EmailNotificationsHooks::onAlternateUserMailer",		
+		"GetPreferences": "EmailNotificationsHooks::onGetPreferences",
+		"LoadExtensionSchemaUpdates": "EmailNotificationsHooks::onLoadExtensionSchemaUpdates",
+		"BeforeInitialize": "EmailNotificationsHooks::onBeforeInitialize"
+	},
+	"ConfigRegistry": {
+	},
+	"SpecialPages": {
+		"EmailNotifications": "SpecialEmailNotifications",
+		"EmailNotificationsActivity": "SpecialEmailNotificationsActivity",
+		"EmailNotificationsEvents": "SpecialEmailNotificationsEvents"
+	},
+	"APIModules": {
+			"emailnotifications-check-latest-version": "EmailNotificationsApiCheckLatestVersion"
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "EmailNotifications/resources"
+	},
+	"ResourceModules": {
+		"ext.EmailNotifications": {
+			"position": "top",
+			"scripts": [
+				"EmailNotifications.js",
+				"VersionCheck.js"
+			],
+			"styles": [
+			],
+			"dependencies": [
+			],
+			"messages": [
+				"emailnotifications-jsmodule-deleteitemconfirm",
+				"emailnotifications-jsmodule-outdated-version"
+			]
+		},
+		"ext.EmailNotifications.MenuTagMultiselectWidget": {
+			"position": "top",
+			"scripts": [
+				"mw.widgets.MenuTagMultiselectWidget.js"
+			],
+			"dependencies": [
+				"oojs-ui-widgets"
+			]
+		}
+	},
+	"config": {
+		"EmailNotificationsDisableVersionCheck": {
+			"value": false
+		},
+		"EmailNotificationsMailer": {
+			"value": "sendmail"
+		},
+		"EmailNotificationsUnsubscribeLink": {
+			"value": true
+		},
+		"EmailNotificationsEmailTracking": {
+			"value": true
+		},
+		"EmailNotificationsCreateAccountEmailRequired": {
+			"value": true
+		}
+	},
+	"manifest_version": 2
+}

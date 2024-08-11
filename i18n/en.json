@@ -1,0 +1,82 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+
+	"emailnotifications": "Manage Notifications",
+	"emailnotificationsevents": "Manage Notifications",
+	"emailnotifications-subject": "Manage Notifications ($1)",
+	"emailnotifications-subject-edit": "Manage Notifications (Edit $1)",
+	"emailnotifications-subject-create": "Manage Notifications (create)",
+	"emailnotificationsactivity": "Activity",
+	"emailnotifications-manage-description": "",
+	"specialpages-group-emailnotifications": "Email Notifications",
+	"emailnotificationsunsubscribe": "Email Notifications unsubscribe",
+	"emailnotifications-jsmodule-deleteitemconfirm": "Are you sure you want to delete this item?",
+
+	"emailnotifications-jsmodule-outdated-version": "This version of EmailNotifications is outdated. <a href=\"https://www.mediawiki.org/wiki/Special:ExtensionDistributor/EmailNotifications\">Update</a>",
+	"apihelp-emailnotifications-check-latest-version-summary": "emailnotifications check latest version summary",
+	"apihelp-emailnotifications-check-latest-version-example-1": "emailnotifications check latest version example-1",
+
+	"right-emailnotifications-can-manage-notifications": "EmailNotifications admin",
+	"action-emailnotifications-can-manage-notifications": "EmailNotifications admin",
+
+	"group-emailnotifications-admin": "EmailNotifications admin",
+	"group-emailnotifications-admin-member": "EmailNotifications admin",
+
+	"emailnotifications-manage-form-button-add-notification-legend": "",
+	"emailnotifications-manage-form-button-add-notification": "add notification",
+	"emailnotifications-managepermissions-form-search-legend": "search",
+	"emailnotifications-manage-form-search-created_by-label": "created by",
+	"emailnotifications-managepermissions-form-search-submit": "submit",
+	"emailnotifications-manage-table-empty": "no items",
+
+	"emailnotifications-manage-form-search-subject-label": "subject",
+	"emailnotifications-activity-form-returnlink-text": "← View notification",
+
+	"emailnotifications-manage-form-returnlink": "← [[$1|List of notifications]]",
+	"emailnotifications-manage-form-preamble": "Here you can manage notifications by assigning them to specific groups, page, and frequency.",
+	"emailnotifications-manage-form-fieldset-notifications-main": "",
+	"emailnotifications-manage-form-groups-label": "Groups",
+	"emailnotifications-manage-form-groups-help": "The groups to which the notification will be addressed",
+	"emailnotifications-manage-form-page-label": "Page",
+	"emailnotifications-manage-form-page-help": "The page containing the content of the notification",
+	"emailnotifications-manage-form-frequency-label": "Frequency",
+	"emailnotifications-manage-form-frequency-help": "The frequency of the notification ([https://en.wikipedia.org/wiki/Cron Cron] format)",
+	"emailnotifications-manage-form-enabled-label": "enabled",
+	"emailnotifications-manage-form-enabled-help": "",
+	"emailnotifications-manage-form-must_differ-label": "send only if different from previous sent notification",
+	"emailnotifications-manage-form-must_differ-help": "",
+	
+	"emailnotifications-manage-form-subject-label": "subject",
+	"emailnotifications-manage-form-subject-help": "email subject",
+
+	"emailnotifications-manage-form-button-submit": "submit",
+	"emailnotifications-manage-form-button-delete": "delete",
+
+	"emailnotifications-manage-pager-header-created_by": "created by",
+	"emailnotifications-manage-pager-header-groups": "groups",
+	"emailnotifications-manage-pager-header-page": "page",
+	"emailnotifications-manage-pager-header-frequency": "frequency",
+	"emailnotifications-manage-pager-header-actions": "actions",
+	"emailnotifications-manage-pager-header-enabled": "enabled",
+	"emailnotifications-manage-pager-header-subject": "subject",
+	"emailnotifications-manage-pager-header-recipients": "recipients",
+	"emailnotifications-manage-pager-header-date": "date",
+	"emailnotifications-manage-pager-header-text": "text",
+
+	"emailnotifications-manage-pager-header-user": "user",
+	"emailnotifications-manage-pager-header-notification": "notification",
+	"emailnotifications-manage-pager-header-event": "event",
+
+	"emailnotifications-manage-table-enabled-yes": "yes",
+	"emailnotifications-manage-table-enabled-no": "no",
+
+	"emailnotifications-manage-table-button-edit": "edit",
+	"emailnotifications-manage-table-button-view": "view",
+	"emailnotifications-manage-table-button-activity": "activity",
+
+	"emailnotifications-email-unsubscribe": "<br /><br /><br /><small><a href=\"$1\">unsubscribe</a></small>",
+	"emailnotifications-unsubscribe-unsubscribe": "You have been unsubscribed from $1"
+
+}
