@@ -77,6 +77,18 @@ class EmailNotificationsHooks {
 				);
 			}
 		}
+
+		$updater->addExtensionField(
+			'emailnotifications_notifications',
+			'skip_strategy',
+			"$base/../$dbType/emailnotifications_notifications_skip_strategy.sql"
+		);
+
+		$updater->addExtensionField(
+			'emailnotifications_notifications',
+			'skip_text',
+			"$base/../$dbType/emailnotifications_notifications_skip_text.sql"
+		);
 	}
 
 	public static function onGetPreferences( $user, &$preferences ) {

@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS emailnotifications_notifications (
   `frequency` TEXT NOT NULL,
   `enabled` TINYINT(1) NOT NULL default 1,
   `must_differ` TINYINT(1) NOT NULL default 1,
+   `skip_strategy` enum('contains', 'does not contain', 'regex') NULL default 'contains',
+  `skip_text` TEXT NULL,
   `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

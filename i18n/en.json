@@ -47,7 +47,16 @@
 	"emailnotifications-manage-form-enabled-help": "",
 	"emailnotifications-manage-form-must_differ-label": "send only if different from previous sent notification",
 	"emailnotifications-manage-form-must_differ-help": "",
-	
+
+	"emailnotifications-manage-form-skip_strategy-label": "skip if notification body",
+	"emailnotifications-manage-form-skip_strategy-help": "",
+	"emailnotifications-manage-form-skip_text-label": "",
+	"emailnotifications-manage-form-skip_text-help": "",
+
+	"emailnotifications-manage-form-options-skip-contains": "contains",
+	"emailnotifications-manage-form-options-skip-does_not_contain": "does not contain",
+	"emailnotifications-manage-form-options-skip-regex": "regex",
+
 	"emailnotifications-manage-form-subject-label": "subject",
 	"emailnotifications-manage-form-subject-help": "email subject",
 
@@ -78,5 +87,4 @@
 
 	"emailnotifications-email-unsubscribe": "<br /><br /><br /><small><a href=\"$1\">unsubscribe</a></small>",
 	"emailnotifications-unsubscribe-unsubscribe": "You have been unsubscribed from $1"
-
 }

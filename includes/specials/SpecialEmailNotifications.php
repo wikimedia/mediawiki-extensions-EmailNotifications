@@ -236,6 +236,8 @@ class SpecialEmailNotifications extends SpecialPage {
 				'subject' => '',
 				'frequency' => '',
 				'must_differ' => true,
+				'skip_strategy' => 'contains',
+				'skip_text' => null,
 				'enabled' => true
 			];
 
@@ -357,6 +359,33 @@ class SpecialEmailNotifications extends SpecialPage {
 				}
 				return true;
 			},
+		];
+
+		$formDescriptor['skip_strategy'] = [
+			'label-message' => 'emailnotifications-manage-form-skip_strategy-label',
+			'type' => 'select',
+			'name' => 'skip_strategy',
+			'required' => false,
+			'cssclass' => 'emailnotifications-skip_strategy',
+			'section' => $section_prefix . 'form-fieldset-notifications-main',
+			'help-message' => 'emailnotifications-manage-form-skip_strategy-help',
+			'default' => $row['skip_strategy'],
+			'options' => [
+				$this->msg( 'emailnotifications-manage-form-options-skip-contains' )->text() => 'contains',
+				$this->msg( 'emailnotifications-manage-form-options-skip-does_not_contain' )->text() => 'does not contain',
+				$this->msg( 'emailnotifications-manage-form-options-skip-regex' )->text() => 'regex',
+			]
+		];
+
+		$formDescriptor['skip_text'] = [
+			'label-message' => 'emailnotifications-manage-form-skip_text-label',
+			'type' => 'text',
+			'name' => 'skip_text',
+			'required' => false,
+			'cssclass' => 'emailnotifications-skip_text',
+			'section' => $section_prefix . 'form-fieldset-notifications-main',
+			'help-message' => 'emailnotifications-manage-form-skip_text-help',
+			'default' => $row['skip_text'],
 		];
 
 		$formDescriptor['must_differ'] = [

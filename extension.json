@@ -94,6 +94,7 @@
 				"VersionCheck.js"
 			],
 			"styles": [
+				"style.css"
 			],
 			"dependencies": [
 			],

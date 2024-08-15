@@ -88,6 +88,8 @@ class SendNotifications extends Maintenance {
 					$row->page,
 					$row->subject,
 					$row->must_differ,
+					$row->skip_strategy,
+					$row->skip_text,
 					$errors,
 				);
 				if ( is_array( $ret ) ) {

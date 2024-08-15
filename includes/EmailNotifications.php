@@ -200,7 +200,16 @@ $wgEmailNotificationsMailerConf = [
 	 * @param array &$errors
 	 * @return array|bool
 	 */
-	public static function sendNotification( $notificationId, $groups, $page, $subject, $must_differ, &$errors = [] ) {
+	public static function sendNotification(
+		$notificationId,
+		$groups,
+		$page,
+		$subject,
+		$must_differ,
+		$skip_strategy,
+		$skip_text,
+		&$errors = []
+	) {
 		$users = self::usersInGroups( $groups );
 
 		if ( !count( $users ) ) {
@@ -242,6 +251,32 @@ $wgEmailNotificationsMailerConf = [
 
 		$html2Text = new \Html2Text\Html2Text( $html );
 		$text = $html2Text->getText();
+
+		if ( !empty( $skip_text ) ) {
+			switch ( $skip_strategy ) {
+				case 'contains':
+					if ( strpos( $text, $skip_text ) !== false ) {
+						$errors[] = 'skip text contains';
+						self::$Logger->warning( current( $errors ) );
+						return false;
+					}
+					break;
+				case 'does not contain':
+					if ( strpos( $text, $skip_text ) === false ) {
+						$errors[] = 'skip text does not contain';
+						self::$Logger->warning( current( $errors ) );
+						return false;
+					}
+					break;
+				case 'regex':
+					if ( preg_match( '/' . preg_quote( $skip_text, '/' ) . '/', $text ) ) {
+						$errors[] = 'skip text regex';
+						self::$Logger->warning( current( $errors ) );
+						return false;
+					}
+			}
+		}
+
 		$date = date( 'Y-m-d H:i:s' );
 		$dbr = self::getDb( DB_REPLICA );
 
