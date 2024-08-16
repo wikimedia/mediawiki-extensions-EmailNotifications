@@ -269,7 +269,7 @@ $wgEmailNotificationsMailerConf = [
 					}
 					break;
 				case 'regex':
-					if ( preg_match( '/' . preg_quote( $skip_text, '/' ) . '/', $text ) ) {
+					if ( preg_match( '/' . str_replace( '/', '\/', $skip_text ) . '/', $text ) ) {
 						$errors[] = 'skip text regex';
 						self::$Logger->warning( current( $errors ) );
 						return false;

@@ -50,7 +50,7 @@
 
 	"emailnotifications-manage-form-skip_strategy-label": "skip if notification body",
 	"emailnotifications-manage-form-skip_strategy-help": "",
-	"emailnotifications-manage-form-skip_text-label": "",
+	"emailnotifications-manage-form-skip_text-label": "text",
 	"emailnotifications-manage-form-skip_text-help": "",
 
 	"emailnotifications-manage-form-options-skip-contains": "contains",
