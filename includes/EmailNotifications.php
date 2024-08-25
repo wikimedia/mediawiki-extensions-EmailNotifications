@@ -313,6 +313,9 @@ $wgEmailNotificationsMailerConf = [
 		$userOptionsLookup = $services->getUserOptionsLookup();
 		$languageFactory = $services->getLanguageFactory();
 
+		$parser = $services->getParserFactory()->getInstance();
+		$parser->setTitle( $title_ );
+
 		$sent = [];
 		foreach ( $users as $userid ) {
 			$user = $userFactory->newFromId( $userid );
@@ -324,6 +327,14 @@ $wgEmailNotificationsMailerConf = [
 			$parserOutput = $wikiPage->getParserOutput( $parserOptions );
 
 			$html = Parser::stripOuterParagraph( $parserOutput->getText( $options ) );
+
+			// parse subject as wikitext
+			$parser->setOptions( $parserOptions );
+			$parser->setOutputType( Parser::OT_PLAIN );
+			$parser->clearState();
+			$subject_ = $parser->recursiveTagParseFully( $subject );
+			$html2Text_ = new \Html2Text\Html2Text( $subject_ );
+			$subject_ = $html2Text_->getText();
 
 			$email = $user->getEmail();
 			if ( $email ) {
@@ -353,7 +364,7 @@ $wgEmailNotificationsMailerConf = [
 				$trackingUrl = wfAppendQuery( $url, [ 'action' => 'tracking', 'msgId' =>
 					str_replace( [ '<', '>' ], '', self::makeMsgId( $notificationId, $userid, $date ) ) ] );
 
-				UserMailer::send( $to, $sender, $subject, $body, [
+				UserMailer::send( $to, $sender, $subject_, $body, [
 					 'headers' => [
 					 	// 'List-Unsubscribe' will be overwritten
 						'EmailNotifications-ListUnsubscribe' => $listUnsubscribe,
