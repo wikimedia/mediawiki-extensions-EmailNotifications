@@ -12,7 +12,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @author thomas-topway-it <support@topway.it>
@@ -55,8 +55,8 @@ $( function () {
 							};
 							messageWidget.on( 'close', closeFunction );
 
+							// eslint-disable-next-line no-jquery/no-global-selector
 							$( '.mw-body-content' )
-							// $( '.mw-htmlform-ooui-wrapper' )
 								.first()
 								.prepend(
 									// eslint-disable-next-line no-jquery/no-parse-html-literal

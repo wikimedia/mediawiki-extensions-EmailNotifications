@@ -14,15 +14,13 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup extensions
  * @author thomas-topway-it <support@topway.it>
  * @copyright Copyright ©2024, https://wikisphere.org
  */
-
-use MediaWiki\MediaWikiServices;
 
 /**
  * A special page that lists protected pages
@@ -52,7 +50,7 @@ class SpecialEmailNotificationsEvents extends SpecialPage {
 
 		$out->addModuleStyles( 'mediawiki.special' );
 		$this->addHelpLink( 'Extension:EmailNotifications' );
-		
+
 		$action = $request->getVal( 'action' );
 		$notificationId = $par;
 
@@ -81,7 +79,7 @@ class SpecialEmailNotificationsEvents extends SpecialPage {
 					$options
 				);
 				ob_clean();
-				//header( 'Content-Disposition: inline; filename="' . $filename . '"' );
+				// header( 'Content-Disposition: inline; filename="' . $filename . '"' );
 				// transparent pixel
 				// GIF89a�������!����,�������D�;
 				$data = 'R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
@@ -92,9 +90,7 @@ class SpecialEmailNotificationsEvents extends SpecialPage {
 				$mediaWiki = new MediaWiki();
 				$mediaWiki->restInPeace();
 				exit();
-				break;
 		}
-
 	}
 
 	/**

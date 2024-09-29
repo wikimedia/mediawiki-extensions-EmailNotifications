@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup extensions
@@ -21,7 +21,6 @@
  * @copyright Copyright ©2024, https://wikisphere.org
  */
 
-use MediaWiki\Extension\EmailNotifications\Mailer;
 use MediaWiki\Logger\LoggerFactory;
 
 class EmailNotificationsHooks {
@@ -91,6 +90,10 @@ class EmailNotificationsHooks {
 		);
 	}
 
+	/**
+	 * @param User $user
+	 * @param array &$preferences
+	 */
 	public static function onGetPreferences( $user, &$preferences ) {
 	}
 
@@ -108,13 +111,15 @@ class EmailNotificationsHooks {
 			unset( $headers['EmailNotifications-ListUnsubscribe'] );
 			if ( $GLOBALS['wgEmailNotificationsUnsubscribeLink'] ) {
 				$body .= wfMessage( 'emailnotifications-email-unsubscribe',
-					str_replace( [ '<', '>' ], '', $headers['List-Unsubscribe'] ) )->text();	
+					str_replace( [ '<', '>' ], '', $headers['List-Unsubscribe'] ) )->text();
 			}
 		}
 
 		if ( array_key_exists( 'EmailNotifications-TrackingUrl', $headers ) ) {
 			if ( $GLOBALS['wgEmailNotificationsEmailTracking'] ) {
-				$body .= '<img alt="" border="0" width="1" height="1" src="' . $headers['EmailNotifications-TrackingUrl'] . '" style="height: 1.0px;width: 1.0px;border-width: 0;margin-top: 0;margin-bottom: 0;margin-right: 0;margin-left: 0;padding-top: 0;padding-bottom: 0;padding-right: 0;padding-left: 0;" />';
+				$body .= '<img alt="" border="0" width="1" height="1" src="' . $headers['EmailNotifications-TrackingUrl'] .
+					'" style="height: 1.0px;width: 1.0px;border-width: 0;margin-top: 0;margin-bottom: 0;margin-right: 0;' .
+					'margin-left: 0;padding-top: 0;padding-bottom: 0;padding-right: 0;padding-left: 0;" />';
 			}
 		}
 

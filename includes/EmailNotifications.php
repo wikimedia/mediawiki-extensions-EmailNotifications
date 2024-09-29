@@ -13,7 +13,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup extensions
@@ -21,10 +21,9 @@
  * @copyright Copyright ©2024, https://wikisphere.org
  */
 
+use MediaWiki\Extension\EmailNotifications\Mailer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\WikiMap\WikiMap;
-use MediaWiki\Extension\EmailNotifications\Mailer;
 use Psr\Log\LoggerInterface;
 
 class EmailNotifications {
@@ -107,7 +106,7 @@ $wgEmailNotificationsMailerConf = [
 
 		if ( !empty( $headers ) ) {
 			$headersEmail = $email->getHeaders();
-			$ignore = [ 'From', 'Return-Path', 'Date', 'Message-ID', 
+			$ignore = [ 'From', 'Return-Path', 'Date', 'Message-ID',
 				'MIME-Version', 'Content-type', 'content-transfer-encoding' ];
 
 			foreach ( $headers as $key => $value ) {
@@ -147,14 +146,15 @@ $wgEmailNotificationsMailerConf = [
 		$mailer->sendEmail( $email );
 
 		return true;
-	}		
+	}
 
 	/**
 	 * @param array $groups
+	 * @param array $errors
 	 * @return array|bool
 	 */
 	public static function usersInGroups( $groups, $errors = [] ) {
-	 	$context = RequestContext::getMain();
+		$context = RequestContext::getMain();
 
 		// @see https://www.mediawiki.org/wiki/API:Allusers
 		$row = [
@@ -197,6 +197,8 @@ $wgEmailNotificationsMailerConf = [
 	 * @param int $page
 	 * @param string $subject
 	 * @param bool $must_differ
+	 * @param string $skip_strategy
+	 * @param string $skip_text
 	 * @param array &$errors
 	 * @return array|bool
 	 */
@@ -366,10 +368,10 @@ $wgEmailNotificationsMailerConf = [
 
 				UserMailer::send( $to, $sender, $subject_, $body, [
 					 'headers' => [
-					 	// 'List-Unsubscribe' will be overwritten
+						// 'List-Unsubscribe' will be overwritten
 						'EmailNotifications-ListUnsubscribe' => $listUnsubscribe,
 						'EmailNotifications-TrackingUrl' => $trackingUrl,
-					],
+					 ],
 				] );
 				$sent[] = $userid;
 			}
@@ -436,7 +438,7 @@ $wgEmailNotificationsMailerConf = [
 
 		$tablename = 'emailnotifications_unsubscribe';
 		$conds = [ 'notification_id' => $conds['id'] ];
-		$dbw->delete( $tablename, $conds, __METHOD__ );		
+		$dbw->delete( $tablename, $conds, __METHOD__ );
 	}
 
 	/**
@@ -464,7 +466,7 @@ $wgEmailNotificationsMailerConf = [
 	}
 
 	/**
-	 * @param int $user
+	 * @param int $notificationId
 	 * @return string
 	 */
 	public static function getNotificationSubject( $notificationId ) {
@@ -485,14 +487,14 @@ $wgEmailNotificationsMailerConf = [
 	}
 
 	/**
-	 * @param string $user
+	 * @param string $subject
 	 * @return int
 	 */
 	public static function notificationIdFromSubject( $subject ) {
 		if ( array_key_exists( $subject, self::$cacheSubjectId ) ) {
 			return self::$cacheSubjectId[$subject];
 		}
-		$dbr = \EmailNotifications::getDb( DB_REPLICA );
+		$dbr = self::getDb( DB_REPLICA );
 		$tablename = 'emailnotifications_notifications';
 		$id = (int)$dbr->selectField(
 			$tablename,

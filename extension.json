@@ -67,12 +67,10 @@
 		"EmailNotificationsMagic": "EmailNotificationsMagic.i18n.magic.php"
 	},
 	"Hooks": {
-		"AlternateUserMailer": "EmailNotificationsHooks::onAlternateUserMailer",		
+		"AlternateUserMailer": "EmailNotificationsHooks::onAlternateUserMailer",
 		"GetPreferences": "EmailNotificationsHooks::onGetPreferences",
 		"LoadExtensionSchemaUpdates": "EmailNotificationsHooks::onLoadExtensionSchemaUpdates",
 		"BeforeInitialize": "EmailNotificationsHooks::onBeforeInitialize"
-	},
-	"ConfigRegistry": {
 	},
 	"SpecialPages": {
 		"EmailNotifications": "SpecialEmailNotifications",
@@ -80,7 +78,7 @@
 		"EmailNotificationsEvents": "SpecialEmailNotificationsEvents"
 	},
 	"APIModules": {
-			"emailnotifications-check-latest-version": "EmailNotificationsApiCheckLatestVersion"
+		"emailnotifications-check-latest-version": "EmailNotificationsApiCheckLatestVersion"
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "resources",

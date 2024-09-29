@@ -12,14 +12,14 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @author thomas-topway-it <thomas.topway.it@mail.com>
  * @copyright Copyright © 2024, https://wikisphere.org
  */
 
-$( document ).ready( function () {
+$( function () {
 	// eslint-disable-next-line no-jquery/no-global-selector
 	$( '#emailnotifications-form-notifications button[type="submit"]' ).on(
 		'click',
@@ -33,5 +33,4 @@ $( document ).ready( function () {
 			}
 		}
 	);
-	
 } );

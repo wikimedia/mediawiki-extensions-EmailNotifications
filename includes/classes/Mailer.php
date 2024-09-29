@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup extensions
@@ -254,8 +254,8 @@ $wgEmailNotificationsMailerConf = [
 		try {
 			$this->mailer->send( $email );
 		} catch ( TransportExceptionInterface | TransportException | Exception $e ) {
-			$this->errors[] = 'sendEmail '. $e->getMessage();
-			\EmailNotifications::$Logger->error( 'sendEmail '. $e->getMessage() );
+			$this->errors[] = 'sendEmail ' . $e->getMessage();
+			\EmailNotifications::$Logger->error( 'sendEmail ' . $e->getMessage() );
 			return false;
 		}
 

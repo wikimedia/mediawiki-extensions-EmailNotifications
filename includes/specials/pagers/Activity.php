@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup extensions
@@ -24,10 +24,10 @@
 
 namespace MediaWiki\Extension\EmailNotifications\Pagers;
 
+use Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MWException;
-use Linker;
 use ParserOutput;
 use SpecialPage;
 use TablePager;
@@ -128,7 +128,7 @@ class Activity extends TablePager {
 				$query = [ 'action' => 'view' ];
 				$formatted = Linker::link( $title, $link, [], $query );
 				break;
-				
+
 			case 'date':
 				$formatted = htmlspecialchars(
 					$this->getLanguage()->userTimeAndDate(

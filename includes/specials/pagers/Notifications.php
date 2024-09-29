@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup extensions
@@ -24,9 +24,9 @@
 
 namespace MediaWiki\Extension\EmailNotifications\Pagers;
 
+use Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use Linker;
 use SpecialPage;
 use TablePager;
 use Title;
@@ -93,7 +93,7 @@ class Notifications extends TablePager {
 			case 'groups':
 				$groups = array_flip( $this->groups );
 				$formatted = implode( ', ', array_map( static function ( $value ) use ( $groups ) {
-					return $groups[$value];				
+					return $groups[$value];
 				}, explode( ',', $row->groups ) ) );
 				break;
 
@@ -120,7 +120,7 @@ class Notifications extends TablePager {
 				$link = '<span style="margin-left:2px" class="mw-ui-button mw-ui-progressive">' .
 					$this->msg( 'emailnotifications-manage-table-button-view' )->text() . '</span>';
 				$formatted .= Linker::link( $title, $link, [], $query );
-				$formatted .= '</span>'; 
+				$formatted .= '</span>';
 				break;
 
 			case 'subject':

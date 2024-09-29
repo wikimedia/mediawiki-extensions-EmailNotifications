@@ -1,7 +1,5 @@
 {
 	"extends": "stylelint-config-wikimedia",
 	"rules": {
-		"block-no-empty": null,
-		"selector-pseudo-element-colon-notation": null
 	}
 }

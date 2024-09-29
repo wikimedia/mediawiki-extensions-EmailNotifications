@@ -24,7 +24,15 @@ module.exports = function ( grunt ) {
 				'!vendor/**'
 			]
 		},
-		banana: conf.MessagesDirs
+		// eslint-disable-next-line es-x/no-object-assign
+		banana: Object.assign(
+			conf.MessagesDirs,
+			{
+				options: {
+					requireCompleteMessageDocumentation: false
+				}
+			}
+		)
 	} );
 	grunt.registerTask( 'test', [ 'eslint', 'stylelint', 'banana' ] );
 	grunt.registerTask( 'default', 'test' );

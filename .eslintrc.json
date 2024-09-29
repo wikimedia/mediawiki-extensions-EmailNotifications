@@ -6,7 +6,6 @@
 		"wikimedia/jquery"
 	],
 	"rules": {
-		"camelcase": "off",
-		"no-jquery/no-global-selector": "warn"
+		"camelcase": "off"
 	}
 }

@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup extensions
@@ -28,7 +28,6 @@ if ( is_readable( __DIR__ . '/../../vendor/autoload.php' ) ) {
 
 require_once __DIR__ . '/EmailNotificationsForm.php';
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Extension\EmailNotifications\Widgets\HTMLMenuTagMultiselectField;
 
 /**
@@ -147,8 +146,10 @@ class SpecialEmailNotifications extends SpecialPage {
 
 			default:
 				$class = 'Notifications';
-	
-				$layout = new OOUI\PanelLayout( [ 'id' => 'emailnotifications-panel-layout', 'expanded' => false, 'padded' => false, 'framed' => false ] );
+
+				$layout = new OOUI\PanelLayout(
+					[ 'id' => 'emailnotifications-panel-layout', 'expanded' => false, 'padded' => false, 'framed' => false ]
+				);
 
 				$layout->appendContent(
 					new OOUI\FieldsetLayout(
@@ -171,7 +172,7 @@ class SpecialEmailNotifications extends SpecialPage {
 				$out->addHTML( '<br />' );
 				$out->addHTML( $this->showOptions( $request ) );
 				$out->addHTML( '<br />' );
-			
+
 				break;
 			case 'view':
 				$class = 'Sent';
@@ -351,7 +352,7 @@ class SpecialEmailNotifications extends SpecialPage {
 			'section' => $section_prefix . 'form-fieldset-notifications-main',
 			'help-message' => 'emailnotifications-manage-form-frequency-help',
 			'default' => $row['frequency'],
-			'validation-callback' => function ( $value ) {
+			'validation-callback' => static function ( $value ) {
 				try {
 					$cron = new Cron\CronExpression( $value );
 				} catch ( Exception $e ) {

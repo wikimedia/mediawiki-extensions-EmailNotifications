@@ -15,4 +15,3 @@ $specialPageAliases['en'] = [
 	'EmailNotificationsEvents' => [ 'EmailNotificationsEvents' ],
 	'EmailNotificationsActivity' => [ 'EmailNotificationsActivity' ],
 ];
-

@@ -14,7 +14,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EmailNotifications.  If not, see <http://www.gnu.org/licenses/>.
+ * along with EmailNotifications.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup extensions
@@ -28,7 +28,6 @@ if ( is_readable( __DIR__ . '/../../vendor/autoload.php' ) ) {
 
 require_once __DIR__ . '/EmailNotificationsForm.php';
 
-use MediaWiki\MediaWikiServices;
 /**
  * A special page that lists protected pages
  *
