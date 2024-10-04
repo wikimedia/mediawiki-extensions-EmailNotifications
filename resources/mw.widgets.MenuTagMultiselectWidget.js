@@ -32,7 +32,7 @@
 		} );
 
 		// Parent constructor
-		mw.widgets.MenuTagMultiselectWidget.parent.call( this, $.extend( {}, config, {} ) );
+		mw.widgets.MenuTagMultiselectWidget.parent.call( this, Object.assign( {}, config, {} ) );
 
 		// assign random name to prevent browser
 		// native autocomplete menu
