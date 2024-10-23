@@ -112,7 +112,8 @@ $wgEmailNotificationsMailerConf = [
 								break;
 							case 'gmail':
 								$transport = 'gmail+smtp';
-								$username = $conf['app-password'];
+								$username = $credentials['username'];
+								$password = $credentials['app-password'];
 								break;
 							case 'mandrill':
 								$transport = 'mandrill+smtp';
