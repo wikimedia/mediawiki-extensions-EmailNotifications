@@ -145,6 +145,7 @@ class SpecialEmailNotifications extends SpecialPage {
 				return;
 
 			default:
+				$out->addWikiMsg( 'emailnotifications-manage-description' );
 				$class = 'Notifications';
 
 				$layout = new OOUI\PanelLayout(
@@ -152,18 +153,12 @@ class SpecialEmailNotifications extends SpecialPage {
 				);
 
 				$layout->appendContent(
-					new OOUI\FieldsetLayout(
+					new OOUI\ButtonWidget(
 						[
-							'label' => $this->msg( 'emailnotifications-manage-form-button-add-notification-legend' )->text(), 'items' => [
-								new OOUI\ButtonWidget(
-									[
-										'href' => wfAppendQuery( $this->localTitle->getLocalURL(), [ 'action' => 'edit' ] ),
-										'label' => $this->msg( 'emailnotifications-manage-form-button-add-notification' )->text(),
-										'infusable' => true,
-										'flags' => [ 'progressive', 'primary' ],
-									]
-								)
-							],
+							'href' => wfAppendQuery( $this->localTitle->getLocalURL(), [ 'action' => 'edit' ] ),
+							'label' => $this->msg( 'emailnotifications-manage-form-button-add-notification' )->text(),
+							'infusable' => true,
+							'flags' => [ 'progressive', 'primary' ],
 						]
 					)
 				);
@@ -190,9 +185,6 @@ class SpecialEmailNotifications extends SpecialPage {
 			$request,
 			$this->getLinkRenderer()
 		);
-
-		$out->addWikiMsg( 'emailnotifications-manage-description' );
-		$out->addHTML( '<br />' );
 
 		if ( $pager->getNumRows() ) {
 			$out->addParserOutputContent( $pager->getFullOutput() );
@@ -316,6 +308,7 @@ class SpecialEmailNotifications extends SpecialPage {
 			'required' => true,
 			'infusable' => true,
 			'allowArbitrary' => true,
+			// computed: "emailnotifications-manage-form-fieldset-notifications-main"
 			'section' => $section_prefix . 'form-fieldset-notifications-main',
 			'help-message' => 'emailnotifications-manage-form-groups-help',
 			'default' => $row['groups'],

@@ -9,7 +9,7 @@
 	"emailnotifications-subject-edit": "Manage Notifications (Edit $1)",
 	"emailnotifications-subject-create": "Manage Notifications (create)",
 	"emailnotificationsactivity": "Activity",
-	"emailnotifications-manage-description": "",
+	"emailnotifications-manage-description": "Here you can create/edit notifications and see the outbound messages for each of them<br /><br />",
 	"specialpages-group-emailnotifications": "Email Notifications",
 	"emailnotificationsunsubscribe": "Email Notifications unsubscribe",
 	"emailnotifications-jsmodule-deleteitemconfirm": "Are you sure you want to delete this item?",
@@ -24,7 +24,6 @@
 	"group-emailnotifications-admin": "EmailNotifications admin",
 	"group-emailnotifications-admin-member": "EmailNotifications admin",
 
-	"emailnotifications-manage-form-button-add-notification-legend": "",
 	"emailnotifications-manage-form-button-add-notification": "add notification",
 	"emailnotifications-managepermissions-form-search-legend": "search",
 	"emailnotifications-manage-form-search-created_by-label": "created by",
