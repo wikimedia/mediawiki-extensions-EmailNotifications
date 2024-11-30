@@ -75,10 +75,10 @@ class SpecialEmailNotifications extends SpecialPage {
 			$title = $this->getContext()->getTitle();
 			$bits = explode( '/', $title->getDbKey(), 2 );
 			if ( count( $bits ) === 1 ) {
-				$msg = $this->msg( 'emailnotifications-subject-create' );
+				$msg = $this->msg( 'emailnotifications-item-create' );
 			} else {
 				$par = (int)$bits[1];
-				$msg = $this->msg( 'emailnotifications-subject' . ( $action === 'edit' ? '-edit' : '' ),
+				$msg = $this->msg( 'emailnotifications-item' . ( $action === 'edit' ? '-edit' : '-view' ),
 					\EmailNotifications::getNotificationSubject( $par ) );
 			}
 		}
