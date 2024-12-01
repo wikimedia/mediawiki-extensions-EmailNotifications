@@ -124,6 +124,7 @@ class EmailNotificationsHooks {
 		}
 
 		$errors = [];
+		$attachments = [];
 		EmailNotifications::sendEmail(
 			$headers,
 			$to,
@@ -131,6 +132,7 @@ class EmailNotificationsHooks {
 			$subject,
 			null,
 			$body,
+			$attachments,
 			$errors
 		);
 

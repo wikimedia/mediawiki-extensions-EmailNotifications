@@ -76,17 +76,11 @@ class EmailNotifications {
 	 * @param string $subject
 	 * @param string $text
 	 * @param string $html
+	 * @param array $attachments
 	 * @param array &$errors
 	 * @return bool
 	 */
-	public static function sendEmail( $headers, $to, $from, $subject, $text, $html, &$errors ) {
-	/*
-$wgEmailNotificationsMailer = 'sendgrid';	// 'native';
-$wgEmailNotificationsMailerConf = [
-	'transport' => 'api'			// smtp, http, api
-	'key' => ''
-];
-*/
+	public static function sendEmail( $headers, $to, $from, $subject, $text, $html, $attachments = [], &$errors = [] ) {
 		$mailer = $GLOBALS['wgEmailNotificationsMailer'];
 		$conf = $GLOBALS['wgEmailNotificationsMailerConf'];
 
@@ -110,10 +104,37 @@ $wgEmailNotificationsMailerConf = [
 				'MIME-Version', 'Content-type', 'content-transfer-encoding' ];
 
 			foreach ( $headers as $key => $value ) {
+
+				// automatically assigned
 				if ( in_array( $key, $ignore ) ) {
 					continue;
 				}
-				$headersEmail->addTextHeader( $key, $value );
+
+				// @see vendor/symfony/mime/Header/Headers.php
+				switch ( strtolower( $key ) ) {
+					case 'date':
+						$headersEmail->addDateHeader( $key, new \DateTimeImmutable() );
+						break;
+					case 'from':
+					case 'to':
+					case 'cc':
+					case 'bcc':
+					// @see https://www.mediawiki.org/w/index.php?title=Topic:Yh239sott8bbkc0e&topic_showPostId=yh4ksi74qd0vhlf4#flow-post-yh4ksi74qd0vhlf4
+					case 'reply-to':
+						$headersEmail->addMailboxListHeader( $key, $value );
+						break;
+					case 'sender':
+						$headersEmail->addMailboxHeader( $key, $value );
+						break;
+					case 'message-id':
+						$headersEmail->addIdHeader( $key, $value );
+						break;
+					case 'return-path':
+						$headersEmail->addPathHeader( $key, $value );
+						break;
+					default:
+						$headersEmail->addTextHeader( $key, $value );
+				}
 			}
 		}
 
@@ -142,6 +163,11 @@ $wgEmailNotificationsMailerConf = [
 		}
 
 		$email->to( implode( ', ', $to ) );
+
+		// @see https://phpenterprisesystems.com/symfony-framework/93-how-to-send-emails-with-attachments-in-symfony-6
+		foreach ( $attachments as $value ) {
+			$email->attach( $value['body'], $value['name'], $value['contentType'] );
+		}
 
 		$mailer->sendEmail( $email );
 
