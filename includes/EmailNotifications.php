@@ -21,6 +21,7 @@
  * @copyright Copyright ©2024, https://wikisphere.org
  */
 
+use MediaWiki\Extension\EmailNotifications\BodyPostProcess;
 use MediaWiki\Extension\EmailNotifications\Mailer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -151,6 +152,12 @@ class EmailNotifications {
 		$email->subject( $subject );
 
 		if ( !empty( $html ) ) {
+			$headersEmail->addTextHeader( 'Content-type', 'text/html; charset=UTF-8' );
+
+			$bodyPostProcess = new BodyPostProcess( $GLOBALS['wgServer'], $html );
+			$bodyPostProcess->updateImageUrls();
+			$html = $bodyPostProcess->getHtml();
+
 			$email->html( $html );
 
 			if ( empty( $text ) ) {
