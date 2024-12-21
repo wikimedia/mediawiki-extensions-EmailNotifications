@@ -109,9 +109,18 @@ class EmailNotificationsHooks {
 		if ( array_key_exists( 'EmailNotifications-ListUnsubscribe', $headers ) ) {
 			$headers['List-Unsubscribe'] = $headers['EmailNotifications-ListUnsubscribe'];
 			unset( $headers['EmailNotifications-ListUnsubscribe'] );
+
+			// @see https://phabricator.wikimedia.org/T373191#10369605
 			if ( $GLOBALS['wgEmailNotificationsUnsubscribeLink'] ) {
-				$body .= wfMessage( 'emailnotifications-email-unsubscribe',
-					str_replace( [ '<', '>' ], '', $headers['List-Unsubscribe'] ) )->text();
+				$body .= Html::element( 'br' );
+				$body .= Html::element( 'br' );
+				$body .= Html::element( 'br' );
+				$link = Html::element(
+					'a',
+					[ 'href' => str_replace( [ '<', '>' ], '', $headers['List-Unsubscribe'] ) ],
+					wfMessage( 'emailnotifications-email-unsubscribe' )->text()
+				);
+				$body .= Html::rawElement( 'small', [], $link );
 			}
 		}
 

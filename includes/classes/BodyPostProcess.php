@@ -43,8 +43,9 @@ class BodyPostProcess {
 	public function __construct( $baseHost, $html ) {
 		$this->baseHost = $baseHost;
 
+		libxml_use_internal_errors( true );
 		$this->htmlDom = new \DOMDocument();
-		$this->htmlDom->loadHTML( $html );
+		$this->htmlDom->loadHTML( mb_convert_encoding( $html, 'HTML-ENTITIES', 'UTF-8' ) );
 	}
 
 	/**

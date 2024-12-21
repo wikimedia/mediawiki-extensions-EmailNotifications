@@ -58,7 +58,7 @@
 	"emailnotifications-manage-form-options-skip-regex": "regex",
 
 	"emailnotifications-manage-form-subject-label": "subject",
-	"emailnotifications-manage-form-subject-help": "email subject (parsed as wikitext)",
+	"emailnotifications-manage-form-subject-help": "email subject (wikitext allowed)",
 
 	"emailnotifications-manage-form-button-submit": "submit",
 	"emailnotifications-manage-form-button-delete": "delete",
@@ -86,6 +86,6 @@
 	"emailnotifications-manage-table-button-view": "view",
 	"emailnotifications-manage-table-button-activity": "activity",
 
-	"emailnotifications-email-unsubscribe": "<br /><br /><br /><small><a href=\"$1\">unsubscribe</a></small>",
+	"emailnotifications-email-unsubscribe": "unsubscribe",
 	"emailnotifications-unsubscribe-unsubscribe": "You have been unsubscribed from $1"
 }
