@@ -122,7 +122,8 @@ class EmailNotifications {
 					case 'bcc':
 					// @see https://www.mediawiki.org/w/index.php?title=Topic:Yh239sott8bbkc0e&topic_showPostId=yh4ksi74qd0vhlf4#flow-post-yh4ksi74qd0vhlf4
 					case 'reply-to':
-						$headersEmail->addMailboxListHeader( $key, $value );
+						$headersEmail->addMailboxListHeader( $key,
+							( is_array( $value ) ? $value : [ $value ] ) );
 						break;
 					case 'sender':
 						$headersEmail->addMailboxHeader( $key, $value );
