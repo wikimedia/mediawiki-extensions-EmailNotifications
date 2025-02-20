@@ -170,7 +170,7 @@ class EmailNotifications {
 			$email->text( $text );
 		}
 
-		$email->to( implode( ', ', $to ) );
+		$email->to( ...$to );
 
 		// @see https://phpenterprisesystems.com/symfony-framework/93-how-to-send-emails-with-attachments-in-symfony-6
 		foreach ( $attachments as $value ) {
