@@ -48,7 +48,7 @@ class EmailNotifications {
 	 * @return bool
 	 */
 	public static function setNotifications( $creatorUsername, $row, $id = null ) {
-		$dbw = self::getDB( DB_MASTER );
+		$dbw = self::getDB( DB_PRIMARY );
 
 		if ( !count( $row['groups'] ) ) {
 			return false;
@@ -592,7 +592,6 @@ class EmailNotifications {
 		$connectionProvider = MediaWikiServices::getInstance()->getConnectionProvider();
 		switch ( $db ) {
 			case DB_PRIMARY:
-			case DB_MASTER:
 				return $connectionProvider->getPrimaryDatabase();
 			case DB_REPLICA:
 			default:
