@@ -153,7 +153,9 @@ class EmailNotifications {
 		$email->subject( $subject );
 
 		if ( !empty( $html ) ) {
-			$headersEmail->addTextHeader( 'Content-type', 'text/html; charset=UTF-8' );
+			// *** keep commented ! otherwise a multipart MIME message
+			// won't work
+			// $headersEmail->addTextHeader( 'Content-type', 'text/html; charset=UTF-8' );
 
 			$bodyPostProcess = new BodyPostProcess( $GLOBALS['wgServer'], $html );
 			$bodyPostProcess->updateImageUrls();
@@ -194,7 +196,8 @@ class EmailNotifications {
 		$row = [
 			'action' => 'query',
 			'list' => 'allusers',
-			'augroup' => implode( '|', $groups )
+			'augroup' => implode( '|', $groups ),
+			'aulimit' => 500,
 		];
 
 		$req = new DerivativeRequest(
