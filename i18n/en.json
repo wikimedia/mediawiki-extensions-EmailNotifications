@@ -86,6 +86,8 @@
 	"emailnotifications-manage-table-button-view": "view",
 	"emailnotifications-manage-table-button-activity": "activity",
 
+	"emailnotifications-manage-missing-libraries": "Please install required libraries running <pre>composer install --no-dev</pre> in the extension folder",
+
 	"emailnotifications-email-unsubscribe": "unsubscribe",
 	"emailnotifications-unsubscribe-unsubscribe": "You have been unsubscribed from $1"
 }

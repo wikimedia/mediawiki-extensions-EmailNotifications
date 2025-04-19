@@ -128,6 +128,14 @@ class SpecialEmailNotifications extends SpecialPage {
 
 		$this->addJsConfigVars( $out );
 
+		if ( !class_exists( 'Cron\CronExpression' ) ) {
+			$out->addHTML( new \OOUI\MessageWidget( [
+				'type' => 'error',
+				'label' => new \OOUI\HtmlSnippet( $this->msg( 'emailnotifications-manage-missing-libraries' )->parse() )
+			] ) );
+			return;
+		}
+
 		$action = $request->getVal( 'action' );
 
 		switch ( $action ) {
@@ -224,7 +232,7 @@ class SpecialEmailNotifications extends SpecialPage {
 			}
 
 			$row = [
-				'groups' => '',
+				'ugroups' => '',
 				'page' => '',
 				'subject' => '',
 				'frequency' => '',
@@ -235,9 +243,13 @@ class SpecialEmailNotifications extends SpecialPage {
 			];
 
 		} else {
-			$row['groups'] = str_replace( ",", "\n", $row['groups'] );
+			$row['ugroups'] = str_replace( ",", "\n", $row['ugroups'] );
 			$page = Title::newFromID( $row['page'] );
-			$row['page'] = $page->getFullText();
+			if ( $page ) {
+				$row['page'] = $page->getFullText();
+			} else {
+				$row['page'] = '';
+			}
 		}
 
 		$formDescriptor = $this->getFormDescriptor( $row, $out );
@@ -301,17 +313,17 @@ class SpecialEmailNotifications extends SpecialPage {
 		HTMLForm::$typeMappings['menutagmultiselect'] = HTMLMenuTagMultiselectField::class;
 
 		$groups = $this->groupsList();
-		$formDescriptor['groups'] = [
+		$formDescriptor['ugroups'] = [
 			'label-message' => 'emailnotifications-manage-form-groups-label',
 			'type' => 'menutagmultiselect',
-			'name' => 'groups',
+			'name' => 'ugroups',
 			'required' => true,
 			'infusable' => true,
 			'allowArbitrary' => true,
 			// computed: "emailnotifications-manage-form-fieldset-notifications-main"
 			'section' => $section_prefix . 'form-fieldset-notifications-main',
 			'help-message' => 'emailnotifications-manage-form-groups-help',
-			'default' => $row['groups'],
+			'default' => $row['ugroups'],
 			'options' => array_flip( $groups ),
 		];
 
@@ -484,13 +496,13 @@ class SpecialEmailNotifications extends SpecialPage {
 		$request = $this->getRequest();
 		$new = !$this->par;
 
-		if ( empty( $data['groups'] ) ) {
+		if ( empty( $data['ugroups'] ) ) {
 			return false;
 		}
 
 		$page = Title::newFromText( $data['page'] );
 		$data['page'] = $page->getArticleID();
-		$data['groups'] = preg_split( "/[\r\n]+/", $data['groups'], -1, PREG_SPLIT_NO_EMPTY );
+		$data['ugroups'] = preg_split( "/[\r\n]+/", $data['ugroups'], -1, PREG_SPLIT_NO_EMPTY );
 
 		\EmailNotifications::setNotifications( $this->user->getId(), $data, ( !$new ? $this->par : null ) );
 

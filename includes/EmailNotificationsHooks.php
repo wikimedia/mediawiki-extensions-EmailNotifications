@@ -88,6 +88,12 @@ class EmailNotificationsHooks {
 			'skip_text',
 			"$base/../$dbType/emailnotifications_notifications_skip_text.sql"
 		);
+
+		$updater->addExtensionField(
+			'emailnotifications_notifications',
+			'ugroups',
+			"$base/../$dbType/emailnotifications_notifications_rename_groups.sql"
+		);
 	}
 
 	/**

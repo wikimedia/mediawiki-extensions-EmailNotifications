@@ -82,7 +82,7 @@
 	"emailnotifications-manage-table-button-edit": "manage notifications table cell button label",
 	"emailnotifications-manage-table-button-view": "manage notifications table cell button label",
 	"emailnotifications-manage-table-button-activity": "view notification, events table cell button label",
-
+	"emailnotifications-manage-missing-libraries": "alert missing libraries on manage notifications",
 	"emailnotifications-email-unsubscribe": "email footer unsubscribe",
 	"emailnotifications-unsubscribe-unsubscribe": "special EmailNotificationsEvents confirm unsubscribe message"
 }

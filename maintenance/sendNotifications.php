@@ -84,7 +84,7 @@ class SendNotifications extends Maintenance {
 				$errors = [];
 				$ret = \EmailNotifications::sendNotification(
 					$row->id,
-					explode( ',', $row->groups ),
+					explode( ',', $row->ugroups ),
 					$row->page,
 					$row->subject,
 					$row->must_differ,

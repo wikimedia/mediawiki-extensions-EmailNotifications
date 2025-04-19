@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS /*_*/emailnotifications_notifications (
   `id` int(11) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `groups` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ugroups` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `page` int(11) NOT NULL,
   `subject` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `frequency` TEXT NOT NULL,

@@ -59,7 +59,7 @@ class Notifications extends TablePager {
 	protected function getFieldNames() {
 		$headers = [
 			'created_by' => 'emailnotifications-manage-pager-header-created_by',
-			'groups' => 'emailnotifications-manage-pager-header-groups',
+			'ugroups' => 'emailnotifications-manage-pager-header-groups',
 			'page' => 'emailnotifications-manage-pager-header-page',
 			'subject' => 'emailnotifications-manage-pager-header-subject',
 			'frequency' => 'emailnotifications-manage-pager-header-frequency',
@@ -81,26 +81,31 @@ class Notifications extends TablePager {
 		/** @var object $row */
 		$row = $this->mCurrentRow;
 		$linkRenderer = $this->getLinkRenderer();
+		$formatted = '';
 
 		switch ( $field ) {
 			case 'created_by':
 				$services = MediaWikiServices::getInstance();
 				$userIdentityLookup = $services->getUserIdentityLookup();
 				$user = $userIdentityLookup->getUserIdentityByUserId( $row->created_by );
-				$formatted = $user->getName();
+				if ( $user ) {
+					$formatted = $user->getName();
+				}
 				break;
 
-			case 'groups':
+			case 'ugroups':
 				$groups = array_flip( $this->groups );
 				$formatted = implode( ', ', array_map( static function ( $value ) use ( $groups ) {
 					return $groups[$value];
-				}, explode( ',', $row->groups ) ) );
+				}, explode( ',', $row->ugroups ) ) );
 				break;
 
 			case 'page':
 				$title_ = Title::newFromId( $row->page );
 				$query = [];
-				$formatted = Linker::link( $title_, $title_->getFullText(), [], $query );
+				if ( $title_ ) {
+					$formatted = Linker::link( $title_, $title_->getFullText(), [], $query );
+				}
 				break;
 
 			case 'enabled':

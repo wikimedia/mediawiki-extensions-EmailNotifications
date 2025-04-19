@@ -50,11 +50,11 @@ class EmailNotifications {
 	public static function setNotifications( $creatorUsername, $row, $id = null ) {
 		$dbw = self::getDB( DB_PRIMARY );
 
-		if ( !count( $row['groups'] ) ) {
+		if ( !count( $row['ugroups'] ) ) {
 			return false;
 		}
 
-		$row['groups'] = implode( ',', $row['groups'] );
+		$row['ugroups'] = implode( ',', $row['ugroups'] );
 		$row['created_by'] = $creatorUsername;
 
 		$tablename = 'emailnotifications_notifications';
