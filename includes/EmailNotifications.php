@@ -85,7 +85,7 @@ class EmailNotifications {
 		$mailer = $GLOBALS['wgEmailNotificationsMailer'];
 		$conf = $GLOBALS['wgEmailNotificationsMailerConf'];
 
-		if ( empty( $mailer ) || empty( $conf ) ) {
+		if ( empty( $mailer ) ) {
 			return false;
 		}
 
@@ -161,14 +161,14 @@ class EmailNotifications {
 			$bodyPostProcess->updateImageUrls();
 			$html = $bodyPostProcess->getHtml();
 
-			$email->html( $html );
-
 			if ( empty( $text ) ) {
 				$text = $mailer->html2Text( $html );
 			}
-		}
 
-		if ( !empty( $text ) ) {
+			$email->text( $text );
+			$email->html( $html );
+
+		} else {
 			$email->text( $text );
 		}
 
