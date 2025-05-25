@@ -19,7 +19,7 @@
  * @copyright Copyright © 2024, https://wikisphere.org
  */
 
-$( function () {
+$( () => {
 	// eslint-disable-next-line no-jquery/no-global-selector
 	$( '#emailnotifications-form-notifications button[type="submit"]' ).on(
 		'click',

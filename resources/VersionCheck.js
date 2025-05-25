@@ -19,23 +19,23 @@
  * @copyright Copyright © 2024, https://wikisphere.org
  */
 
-$( function () {
-	var Config = mw.config.get( 'emailnotifications-config' );
+$( () => {
+	const Config = mw.config.get( 'emailnotifications-config' );
 	// display every 3 days
 	if (
 		Config.canManageNotifications &&
 		!mw.cookie.get( 'emailnotifications-check-latest-version' )
 	) {
-		mw.loader.using( 'mediawiki.api', function () {
-			var action = 'emailnotifications-check-latest-version';
+		mw.loader.using( 'mediawiki.api', () => {
+			const action = 'emailnotifications-check-latest-version';
 			new mw.Api()
 				.postWithToken( 'csrf', {
 					action: action
 				} )
-				.done( function ( res ) {
+				.done( ( res ) => {
 					if ( action in res ) {
 						if ( res[ action ].result === 2 ) {
-							var messageWidget = new OO.ui.MessageWidget( {
+							const messageWidget = new OO.ui.MessageWidget( {
 								type: 'warning',
 								label: new OO.ui.HtmlSnippet(
 									mw.msg(
@@ -45,8 +45,8 @@ $( function () {
 								// *** this does not work before ooui v0.43.0
 								showClose: true
 							} );
-							var closeFunction = function () {
-								var three_days = 3 * 86400;
+							const closeFunction = function () {
+								const three_days = 3 * 86400;
 								mw.cookie.set( 'emailnotifications-check-latest-version', true, {
 									path: '/',
 									expires: three_days
@@ -71,7 +71,7 @@ $( function () {
 								messageWidget.$element.addClass(
 									'oo-ui-messageWidget-showClose'
 								);
-								var closeButton = new OO.ui.ButtonWidget( {
+								const closeButton = new OO.ui.ButtonWidget( {
 									classes: [ 'oo-ui-messageWidget-close' ],
 									framed: false,
 									icon: 'close',

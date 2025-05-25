@@ -27,9 +27,7 @@
 		// set options are set in allowedValues,
 		// otherwise extend includes/widget/TagMultiselectWidget.php
 		// eslint-disable-next-line no-jquery/no-map-util
-		config.options = $.map( config.options, function ( value, key ) {
-			return { data: key, label: value };
-		} );
+		config.options = $.map( config.options, ( value, key ) => ( { data: key, label: value } ) );
 
 		// Parent constructor
 		mw.widgets.MenuTagMultiselectWidget.parent.call( this, Object.assign( {}, config, {} ) );
