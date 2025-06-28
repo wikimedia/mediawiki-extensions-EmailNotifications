@@ -15,7 +15,7 @@
 	},
 	"callback": "EmailNotificationsHooks::initExtension",
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\EmailNotifications\\": "includes/classes",
+		"MediaWiki\\Extension\\EmailNotifications\\": "includes/classes/",
 		"MediaWiki\\Extension\\EmailNotifications\\Pagers\\": "includes/specials/pagers/"
 	},
 	"AutoloadClasses": {
