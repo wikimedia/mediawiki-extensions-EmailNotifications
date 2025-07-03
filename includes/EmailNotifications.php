@@ -185,12 +185,14 @@ class EmailNotifications {
 	}
 
 	/**
+	 * @param User $user
 	 * @param array $groups
-	 * @param array $errors
+	 * @param array &$errors
 	 * @return array|bool
 	 */
-	public static function usersInGroups( $groups, $errors = [] ) {
+	public static function usersInGroups( $user, $groups, &$errors = [] ) {
 		$context = RequestContext::getMain();
+		$context->setUser( $user );
 
 		// @see https://www.mediawiki.org/wiki/API:Allusers
 		$row = [
@@ -208,6 +210,7 @@ class EmailNotifications {
 
 		try {
 			$api = new ApiMain( $req, true );
+			$api->getContext()->setUser( $user );
 			$api->execute();
 
 		} catch ( \Exception $e ) {
@@ -229,6 +232,7 @@ class EmailNotifications {
 	}
 
 	/**
+	 * @param User $user
 	 * @param int $notificationId
 	 * @param array $groups
 	 * @param int $page
@@ -240,6 +244,7 @@ class EmailNotifications {
 	 * @return array|bool
 	 */
 	public static function sendNotification(
+		$user,
 		$notificationId,
 		$groups,
 		$page,
@@ -249,7 +254,12 @@ class EmailNotifications {
 		$skip_text,
 		&$errors = []
 	) {
-		$users = self::usersInGroups( $groups );
+		$users = self::usersInGroups( $user, $groups, $errors );
+
+		if ( $users === false ) {
+			self::$Logger->warning( current( $errors ) );
+			return false;
+		}
 
 		if ( !count( $users ) ) {
 			$errors[] = 'no recipients';

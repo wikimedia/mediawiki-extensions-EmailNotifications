@@ -83,6 +83,7 @@ class SendNotifications extends Maintenance {
 				echo "sending notification {$row->subject}" . PHP_EOL;
 				$errors = [];
 				$ret = \EmailNotifications::sendNotification(
+					$this->user,
 					$row->id,
 					explode( ',', $row->ugroups ),
 					$row->page,
