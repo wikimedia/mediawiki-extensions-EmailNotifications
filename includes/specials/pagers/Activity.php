@@ -112,14 +112,17 @@ class Activity extends TablePager {
 		/** @var object $row */
 		$row = $this->mCurrentRow;
 		$linkRenderer = $this->getLinkRenderer();
+		$formatted = '';
 
 		switch ( $field ) {
 			case 'user':
-				[ $notificationId, $userid, $datetime ] = \EmailNotifications::parseMessageId( $row->message_id );
+				[ $notificationId, $userid, $datetime ] = \EmailNotifications::parseMessageId( $row->message_id ) + [ null, 0, null ];
 				$services = MediaWikiServices::getInstance();
 				$userIdentityLookup = $services->getUserIdentityLookup();
 				$user = $userIdentityLookup->getUserIdentityByUserId( $userid );
-				$formatted = $user->getName();
+				if ( $user ) {
+					$formatted = $user->getName();
+				}
 				break;
 
 			case 'notification':
