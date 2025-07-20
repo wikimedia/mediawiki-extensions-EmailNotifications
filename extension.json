@@ -118,6 +118,9 @@
 		"EmailNotificationsMailer": {
 			"value": "sendmail"
 		},
+		"EmailNotificationsMailerConf": {
+			"value": {}
+		},
 		"EmailNotificationsUnsubscribeLink": {
 			"value": true
 		},

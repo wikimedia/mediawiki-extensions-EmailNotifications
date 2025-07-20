@@ -50,6 +50,11 @@ class Mailer {
 	 * @param array $conf
 	 */
 	public function __construct( $provider, $conf ) {
+		if ( !class_exists( 'Symfony\Component\Mailer\Transport' ) ) {
+			// phpcs:ignore Generic.Files.LineLength.TooLong
+			throw new \MWException( 'EmailNotifications: Symfony library not installed. Run "composer install --no-dev" in the extension folder' );
+		}
+
 		$dns = $this->getSymfonyDns( $provider, $conf );
 		if ( $dns !== false ) {
 			$transport = Transport::fromDsn( $dns );
