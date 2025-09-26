@@ -18,9 +18,11 @@
  * @file
  * @ingroup extensions
  * @author thomas-topway-it <support@topway.it>
- * @copyright Copyright ©2024, https://wikisphere.org
+ * @copyright Copyright ©2024-2025, https://wikisphere.org
  */
 
+use MediaWiki\Extension\EmailNotifications\Aliases\DerivativeRequest as DerivativeRequestClass;
+use MediaWiki\Extension\EmailNotifications\Aliases\Title as TitleClass;
 use MediaWiki\Extension\EmailNotifications\BodyPostProcess;
 use MediaWiki\Extension\EmailNotifications\Mailer;
 use MediaWiki\MainConfigNames;
@@ -202,7 +204,7 @@ class EmailNotifications {
 			'aulimit' => 500,
 		];
 
-		$req = new DerivativeRequest(
+		$req = new DerivativeRequestClass(
 			$context->getRequest(),
 			$row,
 			true
@@ -267,7 +269,7 @@ class EmailNotifications {
 			return false;
 		}
 
-		$title_ = Title::newFromId( $page );
+		$title_ = TitleClass::newFromId( $page );
 		$wikiPage = self::getWikiPage( $title_ );
 
 		if ( !$wikiPage ) {
@@ -576,7 +578,7 @@ class EmailNotifications {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param Title|MediaWiki\Title\Title $title
 	 * @return WikiPage|null
 	 */
 	public static function getWikiPage( $title ) {

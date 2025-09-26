@@ -19,17 +19,17 @@
  * @file
  * @ingroup extensions
  * @author thomas-topway-it <support@topway.it>
- * @copyright Copyright ©2024, https://wikisphere.org
+ * @copyright Copyright ©2024-2025, https://wikisphere.org
  */
 
 namespace MediaWiki\Extension\EmailNotifications\Pagers;
 
-use Linker;
+use MediaWiki\Extension\EmailNotifications\Aliases\Linker as LinkerClass;
+use MediaWiki\Extension\EmailNotifications\Aliases\Title as TitleClass;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use SpecialPage;
 use TablePager;
-use Title;
 
 class Notifications extends TablePager {
 
@@ -101,10 +101,10 @@ class Notifications extends TablePager {
 				break;
 
 			case 'page':
-				$title_ = Title::newFromId( $row->page );
+				$title_ = TitleClass::newFromId( $row->page );
 				$query = [];
 				if ( $title_ ) {
-					$formatted = Linker::link( $title_, $title_->getFullText(), [], $query );
+					$formatted = LinkerClass::link( $title_, $title_->getFullText(), [], $query );
 				}
 				break;
 
@@ -119,12 +119,12 @@ class Notifications extends TablePager {
 					$this->msg( 'emailnotifications-manage-table-button-edit' )->text() . '</span>';
 				$title = SpecialPage::getTitleFor( 'EmailNotifications', $row->id );
 				$query = [ 'action' => 'edit' ];
-				$formatted .= Linker::link( $title, $link, [], $query );
+				$formatted .= LinkerClass::link( $title, $link, [], $query );
 
 				$query = [ 'action' => 'view' ];
 				$link = '<span style="margin-left:2px" class="mw-ui-button mw-ui-progressive">' .
 					$this->msg( 'emailnotifications-manage-table-button-view' )->text() . '</span>';
-				$formatted .= Linker::link( $title, $link, [], $query );
+				$formatted .= LinkerClass::link( $title, $link, [], $query );
 				$formatted .= '</span>';
 				break;
 

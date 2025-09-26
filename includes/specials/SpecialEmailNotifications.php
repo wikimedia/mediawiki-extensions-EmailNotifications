@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the MediaWiki extension EmailfNotifications.
+ * This file is part of the MediaWiki extension EmailNotifications.
  *
  * EmailNotifications is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
  * @file
  * @ingroup extensions
  * @author thomas-topway-it <support@topway.it>
- * @copyright Copyright ©2024, https://wikisphere.org
+ * @copyright Copyright ©2024-2025, https://wikisphere.org
  */
 
 if ( is_readable( __DIR__ . '/../../vendor/autoload.php' ) ) {
@@ -28,7 +28,9 @@ if ( is_readable( __DIR__ . '/../../vendor/autoload.php' ) ) {
 
 require_once __DIR__ . '/EmailNotificationsForm.php';
 
+use MediaWiki\Extension\EmailNotifications\Aliases\Title as TitleClass;
 use MediaWiki\Extension\EmailNotifications\Widgets\HTMLMenuTagMultiselectField;
+use MediaWiki\Parser\ParserOptions;
 
 /**
  * A special page that lists protected pages
@@ -43,10 +45,10 @@ class SpecialEmailNotifications extends SpecialPage {
 	/** @var par */
 	public $action;
 
-	/** @var Title */
+	/** @var Title|MediaWiki\Title\Title */
 	public $localTitle;
 
-	/** @var Title */
+	/** @var Title|MediaWiki\Title\Title */
 	public $localTitlePar;
 
 	/** @var User */
@@ -179,11 +181,11 @@ class SpecialEmailNotifications extends SpecialPage {
 				break;
 			case 'view':
 				$class = 'Sent';
-
 				$out->addWikiMsg(
 					'emailnotifications-manage-form-returnlink',
 					$this->localTitle->getFullText()
 				);
+				$out->addWikiMsg( 'emailnotifications-manage-description-view' );
 				break;
 		}
 
@@ -195,7 +197,10 @@ class SpecialEmailNotifications extends SpecialPage {
 		);
 
 		if ( $pager->getNumRows() ) {
-			$out->addParserOutputContent( $pager->getFullOutput() );
+			$out->addParserOutputContent(
+				$pager->getFullOutput(),
+				ParserOptions::newFromContext( $this->getContext() )
+			);
 
 		} else {
 			$out->addWikiMsg( 'emailnotifications-manage-table-empty' );
@@ -244,7 +249,7 @@ class SpecialEmailNotifications extends SpecialPage {
 
 		} else {
 			$row['ugroups'] = str_replace( ",", "\n", $row['ugroups'] );
-			$page = Title::newFromID( $row['page'] );
+			$page = TitleClass::newFromID( $row['page'] );
 			if ( $page ) {
 				$row['page'] = $page->getFullText();
 			} else {
@@ -500,7 +505,7 @@ class SpecialEmailNotifications extends SpecialPage {
 			return false;
 		}
 
-		$page = Title::newFromText( $data['page'] );
+		$page = TitleClass::newFromText( $data['page'] );
 		$data['page'] = $page->getArticleID();
 		$data['ugroups'] = preg_split( "/[\r\n]+/", $data['ugroups'], -1, PREG_SPLIT_NO_EMPTY );
 

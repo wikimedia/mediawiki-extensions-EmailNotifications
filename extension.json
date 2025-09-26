@@ -1,7 +1,7 @@
 {
 	"name": "EmailNotifications",
 	"author": "thomas-topway-it",
-	"version": "1.1",
+	"version": "1.1.2",
 	"url": "https://www.mediawiki.org/wiki/Extension:EmailNotifications",
 	"descriptionmsg": "emailnotifications-extension-desc",
 	"license-name": "GPL-2.0-or-later",
@@ -15,6 +15,7 @@
 	},
 	"callback": "EmailNotificationsHooks::initExtension",
 	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\EmailNotifications\\Aliases\\": "includes/aliases/",
 		"MediaWiki\\Extension\\EmailNotifications\\": "includes/classes/",
 		"MediaWiki\\Extension\\EmailNotifications\\Pagers\\": "includes/specials/pagers/"
 	},

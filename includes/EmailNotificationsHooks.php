@@ -18,9 +18,10 @@
  * @file
  * @ingroup extensions
  * @author thomas-topway-it <support@topway.it>
- * @copyright Copyright ©2024, https://wikisphere.org
+ * @copyright Copyright ©2024-2025, https://wikisphere.org
  */
 
+use MediaWiki\Extension\EmailNotifications\Aliases\Html as HtmlClass;
 use MediaWiki\Logger\LoggerFactory;
 
 class EmailNotificationsHooks {
@@ -34,7 +35,7 @@ class EmailNotificationsHooks {
 	}
 
 	/**
-	 * @param Title &$title
+	 * @param Title|MediaWiki\Title\Title &$title
 	 * @param null $unused
 	 * @param OutputPage $output
 	 * @param User $user
@@ -118,15 +119,15 @@ class EmailNotificationsHooks {
 
 			// @see https://phabricator.wikimedia.org/T373191#10369605
 			if ( $GLOBALS['wgEmailNotificationsUnsubscribeLink'] ) {
-				$body .= Html::element( 'br' );
-				$body .= Html::element( 'br' );
-				$body .= Html::element( 'br' );
-				$link = Html::element(
+				$body .= HtmlClass::element( 'br' );
+				$body .= HtmlClass::element( 'br' );
+				$body .= HtmlClass::element( 'br' );
+				$link = HtmlClass::element(
 					'a',
 					[ 'href' => str_replace( [ '<', '>' ], '', $headers['List-Unsubscribe'] ) ],
 					wfMessage( 'emailnotifications-email-unsubscribe' )->text()
 				);
-				$body .= Html::rawElement( 'small', [], $link );
+				$body .= HtmlClass::rawElement( 'small', [], $link );
 			}
 		}
 

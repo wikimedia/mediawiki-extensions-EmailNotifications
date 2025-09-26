@@ -19,12 +19,12 @@
  * @file
  * @ingroup extensions
  * @author thomas-topway-it <support@topway.it>
- * @copyright Copyright ©2024, https://wikisphere.org
+ * @copyright Copyright ©2024-2025, https://wikisphere.org
  */
 
 namespace MediaWiki\Extension\EmailNotifications\Pagers;
 
-use Linker;
+use MediaWiki\Extension\EmailNotifications\Aliases\Linker as LinkerClass;
 use MediaWiki\Linker\LinkRenderer;
 use ParserOutput;
 use SpecialPage;
@@ -127,7 +127,7 @@ class Sent extends TablePager {
 				$title = SpecialPage::getTitleFor( 'EmailNotificationsActivity' );
 				$subject = \EmailNotifications::getNotificationSubject( $this->notificationId );
 				$query = [ 'subject' => $subject, 'datetime' => $row->created_at ];
-				$formatted = Linker::link( $title, $link, [], $query );
+				$formatted = LinkerClass::link( $title, $link, [], $query );
 				break;
 
 			case 'recipients':

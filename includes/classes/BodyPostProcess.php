@@ -19,7 +19,7 @@
  * @file
  * @ingroup extensions
  * @author thomas-topway-it <support@topway.it>
- * @copyright Copyright ©2024, https://wikisphere.org
+ * @copyright Copyright ©2024-2025, https://wikisphere.org
  */
 
 namespace MediaWiki\Extension\EmailNotifications;
@@ -45,7 +45,10 @@ class BodyPostProcess {
 
 		libxml_use_internal_errors( true );
 		$this->htmlDom = new \DOMDocument();
-		$this->htmlDom->loadHTML( mb_convert_encoding( $html, 'HTML-ENTITIES', 'UTF-8' ) );
+		$this->htmlDom->loadHTML(
+			'<?xml encoding="utf-8" ?>' . $html,
+			LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+		);
 	}
 
 	/**

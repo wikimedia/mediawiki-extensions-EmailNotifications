@@ -10,7 +10,9 @@
 	"emailnotifications-item-view": "special EmailNotifications, view notification",
 	"emailnotifications-item-create": "special EmailNotifications, create notification",
 	"emailnotificationsactivity": "special SpecialEmailNotificationsActivity title",
-	"emailnotifications-manage-description": "special EmailNotification description",
+	"emailnotifications-manage-description": "special manage notifications description",
+	"emailnotifications-manage-description-view": "special view notifications description",
+	"emailnotifications-manage-description-activity": "special view activity description",
 	"specialpages-group-emailnotifications": "special group emailnotifications",
 	"emailnotifications-jsmodule-deleteitemconfirm": "alert confirm item deletion",
 

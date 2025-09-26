@@ -12,6 +12,9 @@
 	"emailnotifications-item-create": "Manage Notifications (create)",
 	"emailnotificationsactivity": "Activity",
 	"emailnotifications-manage-description": "Here you can create/manage periodic email notifications to be sent to specific groups of this wiki and see the outbound messages for each of them<br /><br />",
+	"emailnotifications-manage-description-view": "Here are all events related to this notification.",
+	"emailnotifications-manage-description-activity": "Here are all the recipients who have received this notification. (only if <code>$wgEmailNotificationsEmailTracking</code> is set to true)",
+
 	"specialpages-group-emailnotifications": "Email Notifications",
 	"emailnotifications-jsmodule-deleteitemconfirm": "Are you sure you want to delete this item?",
 
