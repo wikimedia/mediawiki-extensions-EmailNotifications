@@ -4,6 +4,8 @@
 			"thomas-topway-it"
 		]
 	},
+	"emailnotifications-extension-desc": "extension description",
+
 	"emailnotifications": "special EmailNotification title",
 	"emailnotificationsevents": "special EmailNotificationEvents title",
 	"emailnotifications-item-edit": "special EmailNotifications, edit notification",

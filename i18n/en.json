@@ -4,6 +4,7 @@
 			"thomas-topway-it"
 		]
 	},
+	"emailnotifications-extension-desc": "Provides a special page through which to manage periodic email notifications and an alternate UserMailer based on Symfony",
 
 	"emailnotifications": "Manage Notifications",
 	"emailnotificationsevents": "Manage Notifications",
