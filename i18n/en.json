@@ -23,8 +23,8 @@
 	"apihelp-emailnotifications-check-latest-version-summary": "emailnotifications check latest version summary",
 	"apihelp-emailnotifications-check-latest-version-example-1": "emailnotifications check latest version example-1",
 
-	"right-emailnotifications-can-manage-notifications": "EmailNotifications admin",
-	"action-emailnotifications-can-manage-notifications": "EmailNotifications admin",
+	"right-emailnotifications-can-manage-notifications": "Manage EmailNotifications",
+	"action-emailnotifications-can-manage-notifications": "manage EmailNotifications",
 
 	"group-emailnotifications-admin": "EmailNotifications admin",
 	"group-emailnotifications-admin-member": "EmailNotifications admin",
