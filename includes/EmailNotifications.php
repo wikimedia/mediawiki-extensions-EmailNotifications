@@ -461,7 +461,8 @@ class EmailNotifications {
 	 * @return string
 	 */
 	public static function makeMsgId( $notificationId, $userid, $datetime ) {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
 		$smtp = $mainConfig->get( MainConfigNames::SMTP );
 		$server = $mainConfig->get( MainConfigNames::Server );
 		// $domainId = WikiMap::getCurrentWikiDbDomain()->getId();
@@ -470,7 +471,7 @@ class EmailNotifications {
 		if ( is_array( $smtp ) && isset( $smtp['IDHost'] ) && $smtp['IDHost'] ) {
 			$domain = $smtp['IDHost'];
 		} else {
-			$url = wfParseUrl( $server );
+			$url = $services->getUrlUtils()->parse( $server );
 			$domain = $url['host'];
 		}
 		return "<$msgid@$domain>";
