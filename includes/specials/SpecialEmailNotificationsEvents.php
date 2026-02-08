@@ -27,14 +27,13 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialEmailNotificationsEvents extends SpecialPage {
+class SpecialEmailNotificationsEvents extends UnlistedSpecialPage {
 
 	/**
 	 * @inheritDoc
 	 */
 	public function __construct() {
-		$listed = false;
-		parent::__construct( 'EmailNotificationsEvents', '', $listed );
+		parent::__construct( 'EmailNotificationsEvents' );
 	}
 
 	/**

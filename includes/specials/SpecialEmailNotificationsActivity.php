@@ -51,8 +51,7 @@ class SpecialEmailNotificationsActivity extends SpecialPage {
 	 * @inheritDoc
 	 */
 	public function __construct() {
-		$listed = true;
-		parent::__construct( 'EmailNotificationsActivity', '', $listed );
+		parent::__construct( 'EmailNotificationsActivity' );
 	}
 
 	/**

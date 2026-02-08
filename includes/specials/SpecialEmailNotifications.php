@@ -61,8 +61,7 @@ class SpecialEmailNotifications extends SpecialPage {
 	 * @inheritDoc
 	 */
 	public function __construct() {
-		$listed = true;
-		parent::__construct( 'EmailNotifications', '', $listed );
+		parent::__construct( 'EmailNotifications' );
 	}
 
 	/**
