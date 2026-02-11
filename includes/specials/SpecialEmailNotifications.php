@@ -22,12 +22,6 @@
  * @copyright Copyright ©2024-2025, https://wikisphere.org
  */
 
-if ( is_readable( __DIR__ . '/../../vendor/autoload.php' ) ) {
-	include_once __DIR__ . '/../../vendor/autoload.php';
-}
-
-require_once __DIR__ . '/EmailNotificationsForm.php';
-
 use MediaWiki\Extension\EmailNotifications\Aliases\Title as TitleClass;
 use MediaWiki\Extension\EmailNotifications\Widgets\HTMLMenuTagMultiselectField;
 use MediaWiki\Parser\ParserOptions;

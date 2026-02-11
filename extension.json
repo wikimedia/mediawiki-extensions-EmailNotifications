@@ -22,6 +22,7 @@
 	"AutoloadClasses": {
 		"EmailNotificationsHooks": "includes/EmailNotificationsHooks.php",
 		"EmailNotifications": "includes/EmailNotifications.php",
+		"EmailNotificationsForm": "includes/specials/EmailNotificationsForm.php",
 		"SpecialEmailNotifications": "includes/specials/SpecialEmailNotifications.php",
 		"SpecialEmailNotificationsActivity": "includes/specials/SpecialEmailNotificationsActivity.php",
 		"SpecialEmailNotificationsEvents": "includes/specials/SpecialEmailNotificationsEvents.php",
@@ -132,5 +133,6 @@
 			"value": true
 		}
 	},
+	"load_composer_autoloader": true,
 	"manifest_version": 2
 }

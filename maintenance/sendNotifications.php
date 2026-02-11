@@ -28,10 +28,6 @@ if ( $IP === false ) {
 }
 require_once "$IP/maintenance/Maintenance.php";
 
-if ( is_readable( __DIR__ . '/../vendor/autoload.php' ) ) {
-	include_once __DIR__ . '/../vendor/autoload.php';
-}
-
 class SendNotifications extends Maintenance {
 
 	/** @var \Wikimedia\Rdbms\DBConnRef|\Wikimedia\Rdbms\IDatabase|\Wikimedia\Rdbms\IReadableDatabase */

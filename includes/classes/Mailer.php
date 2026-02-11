@@ -24,10 +24,6 @@
 
 namespace MediaWiki\Extension\EmailNotifications;
 
-if ( is_readable( __DIR__ . '/../../vendor/autoload.php' ) ) {
-	include_once __DIR__ . '/../../vendor/autoload.php';
-}
-
 use Symfony\Component\HttpClient\Exception\TransportException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\Mailer as SymfonyMailer;
