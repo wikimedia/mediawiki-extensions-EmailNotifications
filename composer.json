@@ -21,6 +21,9 @@
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"kylekatarnls/update-helper": false
+		},
+		"audit": {
+			"block-insecure": false
 		}
 	},
 	"require": {
